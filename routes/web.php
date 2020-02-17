@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/task', 'TasksController@index')->name('home')->middleware('auth');
+
+Route::get('/task/create', 'TasksController@create')->middleware('auth');
+
+Route::post('/task', 'TasksController@store')->middleware('auth');
+
+Route::get('/task/{task}/edit', 'TasksController@edit')->middleware('auth');
+
+Route::patch('/task/{task}', 'TasksController@update')->middleware('auth');
+
+Route::delete('/task/{task}', 'TasksController@destroy')->middleware('auth');
+
+Route::patch('/task/{task}/isDone', 'TasksController@updateIsDone')->middleware('auth');
