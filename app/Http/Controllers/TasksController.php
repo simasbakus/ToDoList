@@ -42,7 +42,7 @@ class TasksController extends Controller
     {
         $task = new Task($this->validateRequest());
         $task->userId = auth()->user()->id;
-        $task->isDone = 0;
+        $task->isDone = false;
         $task->save();
 
         return redirect('/task');
@@ -102,11 +102,13 @@ class TasksController extends Controller
           $task = Task::findOrFail($task);
 
           if ($task->isDone == false) {
-            $task->isDone = true;
-            $task->save();
+            $task->update([
+              'isDone' => true,
+            ]);
           } else {
-            $task->isDone = false;
-            $task->save();
+            $task->update([
+              'isDone' => false,
+            ]);
           };
 
           return redirect('/task');
