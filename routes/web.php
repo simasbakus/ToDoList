@@ -17,7 +17,9 @@
 
 Auth::routes();
 
-Route::get('/task', 'TasksController@index')->name('home')->middleware('auth');
+Route::get('/', 'TasksController@index')->name('home')->middleware('auth');
+
+Route::get('/home', 'TasksController@index')->middleware('auth');
 
 Route::get('/task/create', 'TasksController@create')->middleware('auth');
 

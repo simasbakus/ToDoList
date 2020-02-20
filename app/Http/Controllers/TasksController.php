@@ -45,7 +45,7 @@ class TasksController extends Controller
         $task->isDone = false;
         $task->save();
 
-        return redirect('/task');
+        return redirect('/home');
     }
 
     /**
@@ -81,7 +81,7 @@ class TasksController extends Controller
     {
       $task->update($this->validateRequest());
 
-      return redirect('/task');
+      return redirect('/home');
     }
 
     /**
@@ -94,7 +94,7 @@ class TasksController extends Controller
     {
         $task->delete();
 
-        return redirect('/task');
+        return redirect('/home');
     }
 
     public function updateIsDone($task)
@@ -111,7 +111,7 @@ class TasksController extends Controller
             ]);
           };
 
-          return redirect('/task');
+          return redirect('/home');
     }
 
     private function validateRequest()
